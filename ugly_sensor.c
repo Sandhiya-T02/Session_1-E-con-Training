@@ -129,6 +129,16 @@ int InitSensor(char *input_name)
 	{	
 		printf("t is small\n");
 	}
+	
+	if(g_Register == NULL)
+	{
+		printf("g_Register memory has been made free already\n");
+	}
+	else
+	{
+		free(g_Register);
+		g_Register = NULL;
+	}
 
   	return SQR((return_value + 1));//squares the given value
 }

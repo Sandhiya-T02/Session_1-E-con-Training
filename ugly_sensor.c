@@ -14,7 +14,7 @@
 
 //Initialization of Global variables
 int g_count;
-Register_t *g_Reg;
+reg_t *g_register;
 
 
 int main()
@@ -38,9 +38,9 @@ int main()
 
 
 /*Function: Doubles the given number
- *ReturnType: returns the doubled number (int)
- *Argument: An Integer number from user. */
-int ReadRegister(int number) 
+ *ReturnType: returns the doubled number (uint32_t)
+ *Argument: fixed  number from user. */
+uint32_t ReadRegister(uint32_t number) 
 { 
 	return number * 2; 
 }   
@@ -64,9 +64,9 @@ int InitSensor(char *input_name)
 
 
   	strcpy(device_name,input_name);
-  	g_Reg = (void *)malloc(REGISTER_COUNT * sizeof(Register_t));//size allocation for g_Register
+  	g_register = (void *)malloc(REGISTER_COUNT * sizeof(reg_t));//size allocation for g_Register
 
-	if(g_Reg == NULL)//checks if malloc has assigned memory correctly
+	if(g_register == NULL)//checks if malloc has assigned memory correctly
 	{
 		printf("Memory allocation failed\n");
 		is_error = 1;
@@ -81,11 +81,11 @@ int InitSensor(char *input_name)
 		//Allocates address and value for each register based on first register's address
 		for(index = 0;index<REGISTER_COUNT;index++)
         	{
-                	g_Reg[index].address = REGISTER_1_ADDRESS + index;
-                	g_Reg[index].value = ReadRegister(g_Reg[index].address);
+                	g_register[index].address = REGISTER_1_ADDRESS + index;
+                	g_register[index].value = ReadRegister(g_register[index].address);
         	}
 
-        	if (g_Reg[0].value == (REGISTER_1_ADDRESS*2))//checks if for loop has ran properly
+        	if (g_register[0].value == (REGISTER_1_ADDRESS*2))//checks if for loop has ran properly
         	{
                 	printf("sensor ok\n");
                 	printf("init done\n");
@@ -99,7 +99,7 @@ int InitSensor(char *input_name)
 
 	if(!is_error)//assigns count value based on other register's value
 	{
-		switch (g_Reg[1].value) 
+		switch (g_register[1].value) 
 		{
   			case ((REGISTER_1_ADDRESS +1)*2): 
 				g_count = 1; 
@@ -131,16 +131,16 @@ int InitSensor(char *input_name)
 		printf("t is small\n");
 	}
 	
-	if(g_Reg == NULL)
+	if(g_register == NULL)
 	{
 		printf("g_Register memory has been made free already\n");
 	}
 	else
 	{
-		free(g_Reg);
-		g_Reg = NULL;
+		free(g_register);
+		g_register = NULL;
 	}
 
-  	return SQR((return_value + 1));//squares the given value
+        return SQR((return_value + 1));//squares the given value
 }
 

@@ -1,10 +1,10 @@
 /*DESCRIPTION OF PROGRAM: This program checks for the
- * address of register,updates the count based on register.
- * It returns a value based on count*/
+ * address of register,updates the count based on register.It returns a value based on count*/
 
 #include "ugly_sensor_function_declaration.h"
 
 //MACRO DECALARATION
+
 #define REGISTER_1_ADDRESS	0x300 // Address for first register
 #define REGISTER_COUNT		4     // Number of registers
 				      

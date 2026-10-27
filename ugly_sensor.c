@@ -1,6 +1,5 @@
 /*DESCRIPTION OF PROGRAM: This program checks for the
- * address of register,updates the count based on register.
- * It returns a value based on count*/
+ * address of register,updates the count based on register.It returns a value based on count*/
 
 #include "ugly_sensor_function_declaration.h"
 
